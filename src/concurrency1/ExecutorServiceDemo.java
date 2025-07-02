@@ -10,11 +10,11 @@ public class ExecutorServiceDemo {
 
         for (int i = 0; i < 100; i++) {
             NumberPrinter numPrinter = new NumberPrinter(i);
-//            fixedExecutorService.submit(numPrinter);
-            cachedExecutorService.submit(numPrinter);
+            fixedExecutorService.submit(numPrinter);
+//            cachedExecutorService.submit(numPrinter);
         }
-//        fixedExecutorService.shutdown();
-        cachedExecutorService.shutdown();
+        fixedExecutorService.shutdown();
+//        cachedExecutorService.shutdown();
 
     }
 }
