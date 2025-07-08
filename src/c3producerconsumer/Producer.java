@@ -10,9 +10,17 @@ public class Producer implements Runnable {
     @Override
     public void run() {
         while (true) {
-            if (store.items.size() < store.maxSize) {
-                store.addItem(new Object());
-            }
+            // only one thread can access Store resources
+            synchronized (store) {  // store.lock();
+                if (store.items.size() < store.maxSize) {
+                    store.addItem(new Object());
+                }
+            }  // store.unlock();
         }
+//        while (true) {
+//            if (store.items.size() < store.maxSize) {
+//                store.addItem(new Object());
+//            }
+//        }
     }
 }

@@ -10,9 +10,17 @@ public class Consumer implements Runnable {
     @Override
     public void run() {
         while (true) {
-            if (!store.items.isEmpty()) {
-                store.removeItem();
-            }
+            // only one thread can access Store resources
+            synchronized (store) {  // store.lock();
+                if (!store.items.isEmpty()) {
+                    store.removeItem();
+                }
+            }  // store.unlock();
         }
+//        while (true) {
+//            if (!store.items.isEmpty()) {
+//                store.removeItem();
+//            }
+//        }
     }
 }
