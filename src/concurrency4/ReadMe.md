@@ -12,3 +12,15 @@ In the `SumCalculation` class:
 - find the number of available cores.
 - divide the array into multiple parts.
 - and pass them to executor service.
+
+
+# Implement a BankAccount class with a balance.
+
+- Create multiple threads representing depositors and withdrawers.
+- Simulate a race condition where multiple users deposit and withdraw simultaneously.
+
+- Fix the issue using:
+- `synchronized` methods
+- `synchronized` blocks
+-
+Measure execution time with and without synchronization.
