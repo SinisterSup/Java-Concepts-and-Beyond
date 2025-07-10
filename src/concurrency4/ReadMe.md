@@ -14,7 +14,7 @@ In the `SumCalculation` class:
 - and pass them to executor service.
 
 
-# Implement a BankAccount class with a balance.
+# Implement a `BankAccount` class with a balance.
 
 - Create multiple threads representing depositors and withdrawers.
 - Simulate a race condition where multiple users deposit and withdraw simultaneously.
