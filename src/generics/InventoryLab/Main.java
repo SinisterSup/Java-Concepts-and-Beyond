@@ -13,5 +13,19 @@ public class Main {
         List<Item> itemList = new ArrayList<>(List.of(item1, item2, item3));
         Collections.sort(itemList);
         System.out.println(itemList);
+
+        Order order1 = new Order("123", Order.OrderType.STANDARD);
+        Order order2 = new Order("234", Order.OrderType.EXPRESS);
+        Order order3 = new Order("345", Order.OrderType.STANDARD);
+        Order order4 = new Order("456", Order.OrderType.EXPRESS);
+
+        OrderProcessor orderProcessor = new OrderProcessor();
+        orderProcessor.addOrder(order1);
+        orderProcessor.addOrder(order3);
+        System.out.println(orderProcessor.processOrder());
+        orderProcessor.addOrder(order2);
+        orderProcessor.addOrder(order4);
+        System.out.println(orderProcessor.processOrder());
+        System.out.println(orderProcessor.processOrder());
     }
 }
