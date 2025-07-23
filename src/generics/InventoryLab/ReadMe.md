@@ -24,3 +24,20 @@ Inventory<T>
 - remove(Item)
 - get(id)
 - getAll() -> List<Items>
+
+
+## Milestone 3
+Implement `RecentlyViewItems` class that should have 2 methods:
+- RecentlyViewItems(int limit)
+- addRecentlyViewedItem(Item item)
+- getRecentlyViewedItems()
+
+A -> add(A)
+B -> add(B)
+get() -> [B, A]
+C -> add(C)
+get() -> [C, B, A]
+D -> add(D)
+get() -> [D, C, B]
+C -> add(C)
+get() -> [C, D, B]
