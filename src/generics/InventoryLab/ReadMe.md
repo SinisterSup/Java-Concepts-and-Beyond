@@ -41,3 +41,19 @@ D -> add(D)
 get() -> [D, C, B]
 C -> add(C)
 get() -> [C, D, B]
+
+
+# Milestone 4
+
+`Order` -> Comparable -> compares the orders and decides which one should be first
+- orderId
+- enum OrderType -> STANDARD, EXPRESS
+- if same then compare Order ID.
+
+`OrderProcessor`
+- processOrder() -> Returns Express order first, and then if no express order present, return
+  the standard order.
+- addOrder(Order order)
+
+[S, S, E, S, S] -> gives E order first
+[] -> then return S orders.
