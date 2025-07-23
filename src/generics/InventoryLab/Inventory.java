@@ -34,4 +34,10 @@ public class Inventory<I extends Item> {
     public List<I> getAllItems() {
         return new ArrayList<>(itemsMap.values());
     }
+
+    public List<I> getAllItemsSortedBy(Comparator<I> comparator) {
+        List<I> items = new ArrayList<>(itemsMap.values());
+        items.sort(comparator);
+        return items;
+    }
 }

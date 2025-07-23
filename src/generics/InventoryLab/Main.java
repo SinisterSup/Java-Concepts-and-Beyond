@@ -27,5 +27,13 @@ public class Main {
         orderProcessor.addOrder(order4);
         System.out.println(orderProcessor.processOrder());
         System.out.println(orderProcessor.processOrder());
+
+        Inventory<Item> inventory = new Inventory<>();
+        inventory.addItem(item1);
+        inventory.addItem(item2);
+        inventory.addItem(item3);
+        System.out.println(inventory.getAllItems());
+        ItemQuantityComparator itemQuantityComparator = new ItemQuantityComparator();
+        System.out.println(inventory.getAllItemsSortedBy(itemQuantityComparator));
     }
 }
