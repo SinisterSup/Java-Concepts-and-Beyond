@@ -47,6 +47,21 @@ public class Main {
         System.out.println("mostExpensiveItemPrice: " + mostExpensiveItemPrice);
         System.out.println("mostExpensiveItem: " + mostExpensiveItem.orElse(null).getName());
         System.out.println("concatenatedItemNames: " + concatenatedItemNames);
+
+//        // Runtime exception demo
+//        checkItemsQuantity(itemsList);
+        try {
+            checkForDuplicateItems(itemsList);
+            checkItemsQuantity(itemsList);
+        } catch (DuplicateItemException e) {
+//          // Catch block only executes if the exception is thrown.
+//            throw new RuntimeException("Duplicate Item found", e);
+            System.out.println("Duplicate Item found: " + e.getMessage());
+        } finally {
+            // This block always executes, regardless of whether an exception was thrown or not.
+            // Always makes sure
+            System.out.println("Checked for duplicate items");
+        }
     }
 
     public static List<Integer> listItemIds(List<Item> items) {
@@ -151,4 +166,26 @@ public class Main {
     // Accumulator ->
     // The return type should be the same as the type of the stream elements
     // and input to the accumulator function.
+
+
+    // Exceptions Demo
+    public static void checkItemsQuantity(List<Item> items) {
+        for (Item item : items) {
+            if (item.getQuantity() < 0) {
+                throw new InvalidQuantityException("Invalid quantity for item: " + item.getName());
+            }
+        }
+    }
+
+    // Shall declare the exception in the method Signature
+    // The caller of this method must handle this exception
+    public static void checkForDuplicateItems(List<Item> items) throws DuplicateItemException {
+        for (int i  = 0; i < items.size(); i++) {
+            for (int j  = i + 1; j < items.size(); j++) {
+                if (items.get(i).getId() == items.get(j).getId()) {
+                    throw new DuplicateItemException("Duplicate item ID: " + items.get(i).getId());
+                }
+            }
+        }
+    }
 }
