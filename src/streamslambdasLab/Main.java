@@ -30,6 +30,10 @@ public class Main {
         boolean isAnyItemOutOfStock = findIfAnyOutOfStock(itemsList);
         boolean areAllItemsInStock = AllItemsInStock(itemsList);
         boolean areAllItemsCheap = areItemsCheap(itemsList);
+        int itemListTotalQuantity = getTotalQuantity(itemsList);
+        Optional<Double> mostExpensiveItemPrice = getMostExpensiveItemPrice(itemsList);
+        Optional<Item> mostExpensiveItem = getMostExpensiveItem(itemsList);
+        String concatenatedItemNames = getConcatenatedItemNames(itemsList);
 
         System.out.println("itemIdList: " + itemIdList);
         System.out.println("itemPricesList: " + itemPricesList);
@@ -39,6 +43,10 @@ public class Main {
         System.out.println("isAnyItemOutOfStock: " + isAnyItemOutOfStock);
         System.out.println("areAllItemsInStock: " + areAllItemsInStock);
         System.out.println("areAllItemsCheap: " + areAllItemsCheap);
+        System.out.println("itemListTotalQuantity: " + itemListTotalQuantity);
+        System.out.println("mostExpensiveItemPrice: " + mostExpensiveItemPrice);
+        System.out.println("mostExpensiveItem: " + mostExpensiveItem.orElse(null).getName());
+        System.out.println("concatenatedItemNames: " + concatenatedItemNames);
     }
 
     public static List<Integer> listItemIds(List<Item> items) {
@@ -117,4 +125,30 @@ public class Main {
         return items.stream()
                 .noneMatch(item -> item.getPrice() > 5);
     }
+
+    public static int getTotalQuantity(List<Item> items) {
+        return items.stream()
+//                .map(item -> item.getQuantity())
+                .map(Item::getQuantity)
+                .reduce(0, Integer::sum);
+    }
+
+    public static Optional<Double> getMostExpensiveItemPrice(List<Item> items) {
+        return items.stream()
+                .map(Item::getPrice)
+                .reduce((item1Price, item2Price) -> item1Price > item2Price? item1Price : item2Price);
+    }
+    public static Optional<Item> getMostExpensiveItem(List<Item> items) {
+        return items.stream()
+                .reduce((item1, item2) -> item1.getPrice() > item2.getPrice() ? item1 : item2);
+    }
+
+    public static String getConcatenatedItemNames(List<Item> items) {
+        return items.stream()
+                .map(Item::getName)
+                .reduce("", (accumulated,  item2Name) -> accumulated + ", " + item2Name);
+    }
+    // Accumulator ->
+    // The return type should be the same as the type of the stream elements
+    // and input to the accumulator function.
 }
