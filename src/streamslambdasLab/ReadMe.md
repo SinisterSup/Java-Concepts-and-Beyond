@@ -34,3 +34,14 @@
   - say true if all items are in-stock
 - use noneMatch
   - check if any of the items are priced below 5
+
+
+hint: use reduce() function (which is used to aggregate the results)
+### Q7
+Calculate the total quantity of all items in the Inventory
+
+### Q8
+Find the most expensive item among the list of Items
+
+## Q9
+Concatenate all item names into a comma-separated string
